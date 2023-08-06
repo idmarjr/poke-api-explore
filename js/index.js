@@ -1,21 +1,35 @@
 // npx http-server
 // https://devdocs.io/dom/fetch
-console.log('Get to catch them all!');
+console.log('Gotta catch \'em all!');
 
-const fetchPromise = fetch("https://pokeapi.co/api/v2/pokemon/ditto");
+const fetchPromise = fetch("https://pokeapi.co/api/v2/pokemon");
 
 const jsonParsingPromise = fetchPromise
-    .catch(function() {
-        console.error('deu ruim na chamada...');
-    })
     .then(function(response) {
         return response.json();
+    })
+    .catch(function() {
+        console.error('Deu ruim na chamada...');
     });
 
-    jsonParsingPromise
+jsonParsingPromise
+    .then(function(pokemonListJSON) {
+        renderPokemionList(pokemonListJSON.results)
+    })
     .catch(function() {
         console.error('deu ruim, nao era json...');
-    })
-    .then(function(pokemon) {
-        console.log(pokemon);
     });
+
+function renderPokemionList(list) {
+    const template =
+    `<ul>
+        <li>
+            <h2>${x.name}</h2>
+            <span>${x.url}</snap>
+        </li>
+    </ul>`;
+
+    // loop na lista
+    // for ou foreach
+
+}
