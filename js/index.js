@@ -12,8 +12,8 @@ const jsonParsing = fetchPromise
         return response.json();
     })
     // If something goes wrong, show console error message
-    .catch(function() {
-        console.error('Something went wrong when reaching the API');
+    .catch(function(err) {
+        console.error('Something went wrong when reaching the API: \n' + err);
     });
 
 jsonParsing
@@ -23,8 +23,8 @@ jsonParsing
         console.log(jsonParsing)
     })
     // In case data was not JSON, show console error message
-    .catch(function() {
-        console.error('Data from API is not JSON');
+    .catch(function(err) {
+        console.error('Data from API is not JSON: \n' + err);
     });
 
 // Template to render data from API
