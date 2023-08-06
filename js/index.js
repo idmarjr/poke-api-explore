@@ -6,7 +6,7 @@ const fetchPromise = fetch("https://pokeapi.co/api/v2/pokemon");
 
 // Handle promisse from API fetch
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
-const jsonParsingPromise = fetchPromise
+const jsonParsing = fetchPromise
     // If the API response  is good, handle it as JSON
     .then(function(response) {
         return response.json();
@@ -16,25 +16,25 @@ const jsonParsingPromise = fetchPromise
         console.error('Something went wrong when reaching the API');
     });
 
-jsonParsingPromise
+jsonParsing
     // Since .json() (Line 12) returns a promisse, we need to handle with it again
     .then(function(pokemonListJSON) {
-        renderPokemionList(pokemonListJSON.results)
+        //pokemonItemTemplate(pokemonListJSON.results)
+        console.log(jsonParsing)
     })
     // In case data was not JSON, show console error message
     .catch(function() {
         console.error('Data from API is not JSON');
     });
 
-// Create template to render data from API
-function renderPokemionList(list) {
+// Template to render data from API
+function pokemonItemTemplate(list) {
     const template =
-    `<ul>
-        <li>
-            <h2><href="${pokemon.url}">${pokemon.name}</a></h2>
-        </li>
-    </ul>`;
+    `<li>
+        <h2><href="${pokemon.url}">${pokemon.name}</a></h2>
+    </li>`;
 }
+
 // Create a loop to feed the template with data
 // Use for or foreach
 
