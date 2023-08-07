@@ -1,8 +1,10 @@
 // npx http-server
 // https://devdocs.io/dom/fetch
 console.log('Gotta catch \'em all!');
+const url = "https://pokeapi.co/api/v2/pokemon"
 
-const fetchPromise = fetch("https://pokeapi.co/api/v2/pokemon");
+// Fetch data from API
+const fetchPromise = fetch(url);
 
 // Handle promisse from API fetch
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
