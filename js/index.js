@@ -21,8 +21,8 @@ const jsonParsing = fetchPromise
 jsonParsing
     // Since .json() (Line 12) returns a promisse, we need to handle with it again
     .then(function(pokemonListJSON) {
-        //pokemonItemTemplate(pokemonListJSON.results)
-        console.log(jsonParsing)
+        //pokemonItemTemplate()
+        console.log(pokemonListJSON.results)
     })
     // In case data was not JSON, show console error message
     .catch(function(err) {
