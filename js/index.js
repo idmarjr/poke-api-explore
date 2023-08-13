@@ -21,8 +21,7 @@ const jsonParsing = fetchPromise
 jsonParsing
     // Since .json() (Line 12) returns a promisse, we need to handle with it again
     .then(function(pokemonListJSON) {
-        //pokemonItemTemplate()
-        console.log(pokemonListJSON.results)
+        renderPokemonList(pokemonListJSON.results);
     })
     // In case data was not JSON, show console error message
     .catch(function(err) {
@@ -30,13 +29,21 @@ jsonParsing
     });
 
 // Template to render data from API
-function pokemonItemTemplate(list) {
+function pokemonItemTemplate(pokemon) {
+    const artwork = getPokemonArtwork(pokemon);
     const template =
     `<li>
-        <h2><href="${pokemon.url}">${pokemon.name}</a></h2>
+        <h2><a href="${pokemon.url}">${pokemon.name}</a></h2>
+        <img src="${ artwork }" alt="${pokemon.name}" width="256"/>
     </li>`;
+    return template;
+};
+
+// Get Pokemon image URL
+function getPokemonArtwork(pokemon) {
+    const id = pokemon.url.split('/').at(-2);
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${ id }.svg`;
+    // Other image options
+    //return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${ id }.png`;
+    //return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
 }
-
-// Create a loop to feed the template with data
-// Use for or foreach
-
