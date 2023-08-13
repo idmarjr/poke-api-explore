@@ -33,9 +33,11 @@ jsonParsing
 function pokemonItemTemplate(pokemon) {
     const artwork = getPokemonArtwork(pokemon);
     const template =
-    `<li>
-        <h2><a href="${pokemon.url}">${pokemon.name}</a></h2>
-        <img src="${artwork}" alt="${pokemon.name}" width="256"/>
+    `<li class="poke-card">
+        <h2 class="poke-name"><a href="${pokemon.url}">${pokemon.name}</a></h2>
+        <picture class="poke-picture">
+            <img src="${artwork}" alt="${pokemon.name}" width="256"/>
+        <picture>
     </li>`;
     return template;
 };
@@ -53,7 +55,7 @@ function renderPokemonList(pokemonArray) {
     const app = document.getElementById("app");
 
     //Create <ul> t ohold each <li> we will create on loop
-    let allPokemonsList = '<ul>';
+    let allPokemonsList = '<ul class="poke-list">';
     
     // Loop the list of 20 pokemons (From API response) and apply the template to each one
     pokemonArray.forEach(function(pokemon) {
