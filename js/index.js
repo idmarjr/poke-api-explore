@@ -47,3 +47,23 @@ function getPokemonArtwork(pokemon) {
     //return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${ id }.png`;
     //return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
 }
+
+function renderPokemonList(pokemonArray) {
+    const app = document.getElementById("app");
+
+    //Create <ul> t ohold each <li> we will create on loop
+    let allPokemonsList = '<ul>';
+    
+    // Loop the list of 20 pokemons (From API response) and apply the template to each one
+    pokemonArray.forEach(function(pokemon) {
+        const pokemonTemplate = pokemonItemTemplate(pokemon);
+        //console.log( pokemonTemplate );
+        allPokemonsList += pokemonTemplate;
+    });
+    
+    // Close the <ul> after the forEach() finish torun
+    allPokemonsList += '</ul>';
+
+    // Append the created list to the Dom.
+    app.innerHTML = allPokemonsList;
+};
