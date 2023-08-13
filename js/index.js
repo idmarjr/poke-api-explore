@@ -4,11 +4,11 @@ console.log('Gotta catch \'em all!');
 const url = "https://pokeapi.co/api/v2/pokemon"
 
 // Fetch data from API
-const fetchPromise = fetch(url);
+const fetchFromAPI = fetch(url);
 
 // Handle promisse from API fetch
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
-const jsonParsing = fetchPromise
+const jsonParsing = fetchFromAPI
     // If the API response  is good, handle it as JSON
     .then(function(response) {
         return response.json();
@@ -18,12 +18,13 @@ const jsonParsing = fetchPromise
         console.error('Something went wrong when reaching the API: \n' + err);
     });
 
+// Since .json() returns a promisse, we need to handle with it again
 jsonParsing
-    // Since .json() (Line 12) returns a promisse, we need to handle with it again
+    // What to do in case of success
     .then(function(pokemonListJSON) {
         renderPokemonList(pokemonListJSON.results);
     })
-    // In case data was not JSON, show console error message
+    // What to do if te data was not JSON: Show console error message
     .catch(function(err) {
         console.error('Data from API is not JSON: \n' + err);
     });
@@ -34,7 +35,7 @@ function pokemonItemTemplate(pokemon) {
     const template =
     `<li>
         <h2><a href="${pokemon.url}">${pokemon.name}</a></h2>
-        <img src="${ artwork }" alt="${pokemon.name}" width="256"/>
+        <img src="${artwork}" alt="${pokemon.name}" width="256"/>
     </li>`;
     return template;
 };
