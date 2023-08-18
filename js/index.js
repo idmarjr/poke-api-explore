@@ -1,7 +1,13 @@
+"use strict";
+
 // npx http-server
 // https://devdocs.io/dom/fetch
 console.log('Gotta catch \'em all!');
 const url = "https://pokeapi.co/api/v2/pokemon"
+
+const mainHeader = document.querySelector(".main-header");
+const pokeList = document.querySelector(".poke-list");
+const mainPagination = document.querySelector(".main-pagination");
 
 // Fetch data from API
 const fetchFromAPI = fetch(url);
@@ -52,8 +58,6 @@ function getPokemonArtwork(pokemon) {
 }
 
 function renderPokemonList(pokemonArray) {
-    const app = document.querySelector(".poke-list");
-
     //Create <ul> t ohold each <li> we will create on loop
     let allPokemonsList = '';
     
@@ -65,12 +69,14 @@ function renderPokemonList(pokemonArray) {
     });
 
     // Append the created list to the Dom.
-    app.insertAdjacentHTML("afterbegin", allPokemonsList)
+    pokeList.insertAdjacentHTML("afterbegin", allPokemonsList)
 };
 
 // Load more
 function renderLoadMore() {
-//
+    const template =`<button>Load more</button>`
+    mainPagination.insertAdjacentHTML("afterbegin", template)
+};
 
-`<button>Load more</button>`
-}
+// Render pagination content in the page
+renderLoadMore();
