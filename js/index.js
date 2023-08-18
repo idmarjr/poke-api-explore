@@ -52,10 +52,10 @@ function getPokemonArtwork(pokemon) {
 }
 
 function renderPokemonList(pokemonArray) {
-    const app = document.getElementById("app");
+    const app = document.querySelector(".poke-list");
 
     //Create <ul> t ohold each <li> we will create on loop
-    let allPokemonsList = '<ul class="poke-list">';
+    let allPokemonsList = '';
     
     // Loop the list of 20 pokemons (From API response) and apply the template to each one
     pokemonArray.forEach(function(pokemon) {
@@ -63,10 +63,14 @@ function renderPokemonList(pokemonArray) {
         //console.log( pokemonTemplate );
         allPokemonsList += pokemonTemplate;
     });
-    
-    // Close the <ul> after the forEach() finish torun
-    allPokemonsList += '</ul>';
 
     // Append the created list to the Dom.
-    app.innerHTML = allPokemonsList;
+    app.insertAdjacentHTML("afterbegin", allPokemonsList)
 };
+
+// Load more
+function renderLoadMore() {
+//
+
+`<button>Load more</button>`
+}
