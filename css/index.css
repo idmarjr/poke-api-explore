@@ -24,10 +24,17 @@ body {
 
 .poke-card {
     list-style-type: none;
-    padding: 24px;
+    margin-bottom: 20px;
     border: 1px solid grey;
-    border-radius: 2px;
-    margin-bottom: 20px;;
+    border-radius: 4px;
+    box-shadow: 0 0 3px rgba(0,0,0, 0.3);
+}
+
+.poke-card a {
+    display: block;
+    padding: 24px;
+    color: #000;
+    text-decoration: none;
 }
 
 .poke-name {

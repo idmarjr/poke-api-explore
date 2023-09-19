@@ -43,10 +43,12 @@ function pokemonItemTemplate(pokemon) {
     const artwork = getPokemonArtwork(pokemon);
     const template =
     `<li class="poke-card">
-        <h2 class="poke-name"><a href="${pokemon.url}">${pokemon.name}</a></h2>
-        <picture class="poke-picture">
-            <img src="${artwork}" alt="${pokemon.name}" width="256"/>
-        <picture>
+        <a href="${pokemon.url}">
+            <h2 class="poke-name">${pokemon.name}</h2>
+            <picture class="poke-picture">
+                <img src="${artwork}" alt="${pokemon.name}" width="256"/>
+            <picture>
+        </a>
     </li>`;
     return template;
 };
@@ -92,3 +94,28 @@ fetchNextData(apiUrl);
 
 // Render pagination content in the page
 renderLoadMore();
+
+/////////////////////////////////
+//////////// DETAILS ////////////
+/////////////////////////////////
+pokeList.addEventListener("click", function(event){
+    const element = event.target.closest(".poke-card")
+
+    if (element) {
+        //console.log(event.target)
+        event.preventDefault()
+        getPokeUrl(element)
+    };
+});
+
+function getPokeUrl(card) {
+    console.log(card)
+    const url = card.querySelector("a").getAttribute("href");
+};
+
+    // Next steps:
+    // 1. Fetch the URL we now have (Use async await)
+    // 2. Get the info we need (weight)
+
+    // 3. Create template
+    // 4. Render it inside the correct card
