@@ -84,7 +84,7 @@ function renderLoadMore() {
 
     const loadMoreButton = document.getElementById("load-more");
     loadMoreButton.addEventListener("click", function(){
-        fetchNextData(paginationNext)
+        fetchNextData(paginationNext);
     })
 
 };
@@ -98,23 +98,43 @@ renderLoadMore();
 /////////////////////////////////
 //////////// DETAILS ////////////
 /////////////////////////////////
-pokeList.addEventListener("click", function(event){
-    const element = event.target.closest(".poke-card")
+pokeList.addEventListener("click", async function(event) {
+    const element = event.target.closest(".poke-card"); //https://youmightnotneedjquery.com/#delegate
 
     if (element) {
-        //console.log(event.target)
-        event.preventDefault()
-        getPokeUrl(element)
-    };
+        event.preventDefault();
+        const url = getPokeUrl(element);
+        const data = await getPokemonData(url);
+        console.log(data)
+    }
 });
 
 function getPokeUrl(card) {
-    console.log(card)
     const url = card.querySelector("a").getAttribute("href");
+    return url;
 };
 
+async function getPokemonData (url) {
+    const fetchPokeData = await fetch(url)
+    const pokeData = await fetchPokeData.json()
+    return pokeData
+}
+
+/*
+try {
+    const result = await fetch("https://api.fgoobarf");
+    const data = await result.json();
+    console.log(data);
+    //doSoemthing(data);
+} catch(e) {
+    console.error(e);
+}
+*/
+
+
     // Next steps:
-    // 1. Fetch the URL we now have (Use async await)
+    // DONE 1. Fetch the URL we now have (Use async await)
+    // 1.1 Treat error scenario
     // 2. Get the info we need (weight)
 
     // 3. Create template
