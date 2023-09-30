@@ -104,8 +104,13 @@ pokeList.addEventListener("click", async function(event) {
     if (element) {
         event.preventDefault();
         const url = getPokeUrl(element);
-        const data = await getPokemonData(url);
-        console.log(data)
+        try {
+            const data = await getPokemonData(url);
+            console.log(data)
+        }
+        catch(e) {
+            console.error(e)
+        }
     }
 });
 
