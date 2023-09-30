@@ -3,7 +3,7 @@
 // npx http-server
 // https://devdocs.io/dom/fetch
 console.log('Gotta catch \'em all!');
-const apiUrl = "https://pokeapi.co/api/v2/pokemon"
+const apiUrl = "https://pokeapi.co/api/v2/pokemon";
 
 const mainHeader = document.querySelector(".main-header");
 const pokeList = document.querySelector(".poke-list");
@@ -74,7 +74,7 @@ function renderPokemonList(pokemonArray) {
     });
 
     // Append the created list to the Dom.
-    pokeList.insertAdjacentHTML("beforeend", allPokemonsList)
+    pokeList.insertAdjacentHTML("beforeend", allPokemonsList);
 };
 
 // Load more
@@ -106,10 +106,10 @@ pokeList.addEventListener("click", async function(event) {
         const url = getPokeUrl(element);
         try {
             const data = await getPokemonData(url);
-            console.log(data)
+            console.log(data);
         }
         catch(e) {
-            console.error(e)
+            console.error(e);
         }
     }
 });
@@ -120,9 +120,9 @@ function getPokeUrl(card) {
 };
 
 async function getPokemonData (url) {
-    const fetchPokeData = await fetch(url)
-    const pokeData = await fetchPokeData.json()
-    return pokeData
+    const fetchPokeData = await fetch(url);
+    const pokeData = await fetchPokeData.json();
+    return pokeData;
 }
 
 /*
@@ -139,7 +139,7 @@ try {
 
     // Next steps:
     // DONE 1. Fetch the URL we now have (Use async await)
-    // 1.1 Treat error scenario
+    // DONE? 1.1 Treat error scenario
     // 2. Get the info we need (weight)
 
     // 3. Create template
