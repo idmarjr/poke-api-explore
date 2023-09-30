@@ -29,6 +29,11 @@ body {
     box-shadow: 0 0 3px rgba(0,0,0, 0.3);
 }
 
+.poke-card:hover {
+    background-color: rgba(0,0,0, 0.05);
+    box-shadow: 0 0 3px rgba(0,0,0, 0);
+}
+
 .poke-card a {
     display: block;
     padding: 24px;
