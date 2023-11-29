@@ -85,8 +85,7 @@ function renderLoadMore() {
     const loadMoreButton = document.getElementById("load-more");
     loadMoreButton.addEventListener("click", function(){
         fetchNextData(paginationNext);
-    })
-
+    });
 };
 
 // Populate page on onload
@@ -103,13 +102,13 @@ pokeList.addEventListener("click", async function(event) {
 
     if (element) {
         event.preventDefault();
-        const url = getPokeUrl(element);
-        try {
+        const hasInfo = element.dataset.hasInfo !== "true";
+
+        if(hasInfo){
+            const url = getPokeUrl(element);
             const data = await getPokemonData(url);
-            console.log(data);
-        }
-        catch(e) {
-            console.error(e);
+            renderPokeInfo(element, data)
+            console.log(data)
         }
     }
 });
@@ -120,9 +119,20 @@ function getPokeUrl(card) {
 };
 
 async function getPokemonData (url) {
-    const fetchPokeData = await fetch(url);
-    const pokeData = await fetchPokeData.json();
-    return pokeData;
+    try {
+        const fetchPokeData = await fetch(url);
+        const pokeData = await fetchPokeData.json();
+        return pokeData;
+    }
+    catch(e){
+        console.error("Deu ruim: ", e);
+    }
+}
+
+function renderPokeInfo(card, pokeInfo){
+    const template = `<p>Weight: ${pokeInfo.weight}<p>`
+    card.insertAdjacentHTML("beforeend", template);
+    card.dataset.hasInfo = true;
 }
 
 /*
@@ -136,11 +146,10 @@ try {
 }
 */
 
-
     // Next steps:
     // DONE 1. Fetch the URL we now have (Use async await)
-    // DONE? 1.1 Treat error scenario
-    // 2. Get the info we need (weight)
+    // DONE 1.1 Treat error scenario
+    // DONE 2. Render it inside the correct card
 
-    // 3. Create template
-    // 4. Render it inside the correct card
+    // 3. Render poke types
+    // 4. Add pagination
